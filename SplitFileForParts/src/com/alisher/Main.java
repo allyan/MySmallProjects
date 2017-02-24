@@ -13,7 +13,7 @@ public class Main {
         File filename = new File(FilePath);
         filename.length();
         long splitlength = filename.length() / splitParts;
-        long lenhthInFile = 0, length = 0;
+        long lengthInFile = 0, length = 0;
         int counter = 1, data;
         try {
             InputStream in = new BufferedInputStream(new FileInputStream(filename));
@@ -29,7 +29,7 @@ public class Main {
                     length++;
                     data = in.read();
                 }
-                lenhthInFile += length;
+                lengthInFile += length;
                 length = 0;
                 out.close();
             }
