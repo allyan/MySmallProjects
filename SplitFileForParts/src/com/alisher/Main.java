@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        split("C:\\Users\\...", 4);
+        split("C:\\Users\\Allyan\\Desktop\\myFiles\\MV TEAM QUEST Bunker Survey.JPG", 6);
     }
 
     public static void split(String FilePath, long splitParts) {
@@ -20,11 +20,10 @@ public class Main {
             File splitFiles = new File(filename.getParentFile() + "\\" + "SplitFiles_" + filename.getName().substring(0,filename.getName().indexOf('.')));
             splitFiles.mkdir();
             data = in.read();
-            while (data > 0) {
+            while (data != -1) {
                 File splitNames = new File(splitFiles + "\\" + filename.getName().substring(0,filename.getName().indexOf('.')) + "(" + counter++ + ")" + filename.getName().substring(filename.getName().indexOf('.')));
-                System.out.println();
                 OutputStream out = new BufferedOutputStream(new FileOutputStream(splitNames));
-                while (data > 0 && length < splitlength) {
+                while (data != -1 && length < splitlength) {
                     out.write(data);
                     length++;
                     data = in.read();
