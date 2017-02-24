@@ -24,7 +24,7 @@ public class Main {
                 File splitNames = new File(splitFiles + "\\" + filename.getName().substring(0,filename.getName().indexOf('.')) + "(" + counter++ + ")" + filename.getName().substring(filename.getName().indexOf('.')));
                 System.out.println();
                 OutputStream out = new BufferedOutputStream(new FileOutputStream(splitNames));
-                while (data != -1 && length < splitlength) {
+                while (data > 0 && length < splitlength) {
                     out.write(data);
                     length++;
                     data = in.read();
