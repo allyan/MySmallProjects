@@ -1,2 +1,0 @@
-# MySmallProjects
-Some small projects
