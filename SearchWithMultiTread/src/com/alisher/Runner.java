@@ -4,28 +4,27 @@ import java.io.File;
 
 public class Runner implements Runnable {
 
-    private String path;
+    private File path;
     private String searchName;
 
-    public Runner(String path, String searchName) {
+    public Runner(File path, String searchName) {
 
         this.path = path;
         this.searchName = searchName;
     }
 
-    private void search(String path, String searchName) {
-
-        File srcFile = new File(path);
-        String[] list = srcFile.list();
+    private void search(File path, String searchName) {
+        
+        File[] list = path.listFiles();
         if(list != null){
-            for (String filename : list) {
-                File temp = new File(path + File.separator + filename);
-                boolean contain = temp.getAbsolutePath().toLowerCase().contains(searchName.toLowerCase());
+            for (File filename : list) {
+                boolean contain = filename.getName().toLowerCase().contains(searchName.toLowerCase());
                 if(contain) {
-                    System.out.println("\"" + searchName + "\"" + " Found => " + temp);
+                    System.out.println("\"" + searchName + "\"" + " Found => " + filename);
                 }
-                if (temp.isDirectory() && !contain) {
-                    search(temp.getPath(), searchName);
+                if (filename.isDirectory() && !contain) {
+                    search(filename,searchName);        //31 sec.
+//                    (new Thread(new Runner(filename,searchName))).start();       // 39 sec.   25% slowly
                 }
             }
         }
